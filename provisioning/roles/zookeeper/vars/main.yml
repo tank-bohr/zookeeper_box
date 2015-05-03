@@ -1,0 +1,7 @@
+tmp_dir: /tmp
+dest_dir: /opt
+zookeeper_user: "{{ ansible_env.SUDO_USER }}"
+zookeeper_ver: 3.4.6
+zookeeper_archive: "zookeeper-{{zookeeper_ver}}.tar.gz"
+zookeeper_home: "{{dest_dir}}/zookeeper-{{zookeeper_ver}}"
+zookeeper_data_dir: /var/lib/zookeeper

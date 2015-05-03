@@ -1,0 +1,11 @@
+---
+- hosts: all
+  sudo: yes
+  vars_files:
+    - vars/servers.yml
+  roles:
+    - common
+    - oh-my-zsh
+    - java
+    - etc_hosts
+    - zookeeper

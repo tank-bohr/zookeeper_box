@@ -1,0 +1,10 @@
+- name: Ensure the Oracle JVM repository is present
+  apt_repository:
+    repo: ppa:webupd8team/java
+    state: present
+- name: Ensure the Oracle license is accepted
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+- name: Ensure Oracle Java 7 is installed
+  apt:
+    name: oracle-java7-installer
+    state: latest

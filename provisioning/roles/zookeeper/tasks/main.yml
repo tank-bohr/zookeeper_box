@@ -1,0 +1,16 @@
+- name: Download zookeeper
+  get_url:
+    url: http://apache-mirror.rbc.ru/pub/apache/zookeeper/stable/{{ zookeeper_archive }}
+    dest: "{{ tmp_dir }}"
+
+- name: Unarchive zookeeper dist
+  unarchive: copy=no src={{tmp_dir}}/{{zookeeper_archive}} dest={{dest_dir}} creates={{zookeeper_home}} owner={{zookeeper_user}}
+
+- name: Zookeper config
+  template: src=zoo.cfg.j2 dest={{zookeeper_home}}/conf/zoo.cfg owner={{zookeeper_user}}
+
+- name: Create zookeeper data dir
+  file: state=directory path={{ zookeeper_data_dir }} owner={{zookeeper_user}}
+
+- name: Write file myid
+  template: src=myid.j2 dest={{zookeeper_data_dir}}/myid  owner={{zookeeper_user}}

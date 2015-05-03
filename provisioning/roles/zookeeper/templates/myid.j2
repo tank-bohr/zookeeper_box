@@ -1,0 +1,5 @@
+{% for server in servers %}
+{% if ansible_hostname == server.name %}
+{{ loop.index }}
+{% endif %}
+{% endfor %}

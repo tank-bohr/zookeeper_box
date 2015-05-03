@@ -1,0 +1,7 @@
+- debug: var=ansible_hostname
+
+- debug: var=servers
+
+- name: Set hosts names
+  lineinfile: dest=/etc/hosts line="{{ item.ip }} {{ item.name }}.zoo.local"
+  with_items: servers

@@ -1,0 +1,17 @@
+- name: Usefull stuff
+  yum: name={{ item }} state=latest
+  when: ansible_os_family == 'RedHat'
+  with_items: usfull_stuff.redhat
+
+- name: Usefull stuff
+  apt: name={{ item }} state=latest
+  when: ansible_os_family == ''
+  with_items: usfull_stuff.debian
+
+# - name: Disable all firewalls
+#   service: name={{ item }} state=stopped enabled=no
+#   when: ansible_os_family == 'RedHat'
+#   ignore_errors: yes
+#   with_items:
+#     - iptables
+#     - firewalld

@@ -1,0 +1,31 @@
+---
+- name: RedHat packages
+  yum: name={{ item }} state=latest
+  when: ansible_os_family == 'RedHat'
+  with_items:
+    - libselinux-python
+    - git
+    - zsh
+
+- name: Debian packages
+  apt: name={{ item }} state=latest
+  when: ansible_os_family == 'Debian'
+  with_items:
+    - git
+    - zsh
+
+- name: oh-my-zsh
+  sudo: False
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest={{ user_home }}/.oh-my-zsh
+
+- name: .zshrc
+  sudo: False
+  template: src=.zshrc.j2 dest={{ zshrc }} owner={{ user }}
+
+- name: find zsh
+  sudo: False
+  command: which zsh
+  register: which_zsh
+
+- name: set zsh as default shell
+  user: name={{ user }} shell={{ which_zsh.stdout }}

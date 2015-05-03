@@ -1,0 +1,12 @@
+- name: install Oracle JDK
+  yum: name=/vagrant/vendor/jdk-7u75-linux-x64.rpm state=present
+  register: oracle_jdk
+  ignore_errors: True
+
+- name: install OpenJDK
+  yum: name=java-1.7.0-openjdk state=present
+  when: oracle_jdk|failed
+
+- name: remove OpenJDK if Oracle JDK installed
+  yum: name=java-1.7.0-openjdk state=absent
+  when: oracle_jdk|success

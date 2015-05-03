@@ -1,0 +1,16 @@
+usfull_stuff:
+  debian:
+    - mc
+    - vim
+    - curl
+    - wget
+    - telnet
+    - lsof
+  redhat:
+    - mc
+    - vim
+    - curl
+    - wget
+    - telnet
+    - lsof
+    - epel-release

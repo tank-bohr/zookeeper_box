@@ -1,0 +1,8 @@
+---
+servers:
+  - name: panda
+    ip: 172.17.8.101
+  - name: tiger
+    ip: 172.17.8.102
+  - name: squirrel
+    ip: 172.17.8.103
